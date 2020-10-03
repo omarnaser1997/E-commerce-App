@@ -1,3 +1,4 @@
+import 'package:ecommerceapp/Screens/signup_screen.dart';
 import 'package:ecommerceapp/constants.dart';
 import 'package:ecommerceapp/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
@@ -70,9 +71,14 @@ class LoginScreen extends StatelessWidget {
                 'Don\'t have an account ?',
                 style: TextStyle(color: Colors.white, fontSize: 16),
               ),
-              Text(
-                'Login',
-                style: TextStyle(fontSize: 16),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, Signup_Screen.id);
+                },
+                child: Text(
+                  'Signup',
+                  style: TextStyle(fontSize: 16),
+                ),
               ),
             ],
           )

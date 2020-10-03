@@ -10,7 +10,13 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
-      child: TextField(
+      child: TextFormField(
+        // ignore: missing_return
+        validator: (value) {
+          if (value.isEmpty) {
+            return 'value is empty';
+          }
+        },
         cursorColor: KMainColor,
         decoration: InputDecoration(
           hintText: hint,
@@ -24,6 +30,9 @@ class CustomTextField extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
               borderSide: BorderSide(color: Colors.white)),
           focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(20),
+              borderSide: BorderSide(color: Colors.white)),
+          border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(20),
               borderSide: BorderSide(color: Colors.white)),
         ),

@@ -1,12 +1,16 @@
+import 'package:ecommerceapp/services/auth.dart';
 import 'package:ecommerceapp/widgets/custom_icon_field.dart';
 import 'package:ecommerceapp/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
 
 import '../constants.dart';
 
-class Signup_Screen extends StatelessWidget {
+class SignupScreen extends StatelessWidget {
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
   static String id = 'SignupScreen';
+  static String _email, _password;
+
+  final _auth = Auth();
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -24,6 +28,7 @@ class Signup_Screen extends StatelessWidget {
               height: height * .04,
             ),
             CustomTextField(
+              onClick: (value) {},
               icon: Icons.perm_identity,
               hint: 'Enter your name',
             ),
@@ -31,6 +36,9 @@ class Signup_Screen extends StatelessWidget {
               height: height * .02,
             ),
             CustomTextField(
+              onClick: (value) {
+                _email = value;
+              },
               hint: 'Enter your email',
               icon: Icons.email,
             ),
@@ -38,6 +46,9 @@ class Signup_Screen extends StatelessWidget {
               height: height * .02,
             ),
             CustomTextField(
+              onClick: (value) {
+                _password = value;
+              },
               hint: 'Enter your password',
               icon: Icons.lock,
             ),
@@ -49,9 +60,14 @@ class Signup_Screen extends StatelessWidget {
               child: FlatButton(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20)),
-                onPressed: () {
+                onPressed: () async {
                   if (_globalKey.currentState.validate()) {
                     //do some thing
+                    _globalKey.currentState.save();
+                    print(_email);
+                    print(_password);
+                    final authResult = await _auth.signUp(_email, _password);
+                    print(authResult.user.uid);
                   }
                 },
                 color: Colors.black,

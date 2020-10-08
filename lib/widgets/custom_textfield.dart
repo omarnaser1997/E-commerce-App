@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 class CustomTextField extends StatelessWidget {
   final String hint;
   final IconData icon;
+  final Function onClick;
 
-  CustomTextField({@required this.icon, @required this.hint});
+  CustomTextField(
+      {@required this.onClick, @required this.icon, @required this.hint});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -17,6 +19,8 @@ class CustomTextField extends StatelessWidget {
             return 'value is empty';
           }
         },
+
+        onSaved: onClick,
         cursorColor: KMainColor,
         decoration: InputDecoration(
           hintText: hint,

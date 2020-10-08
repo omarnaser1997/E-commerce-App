@@ -1,8 +1,11 @@
 import 'package:ecommerceapp/Screens/login_screen.dart';
-import 'package:ecommerceapp/Screens/signup_screen.dart';
+import 'package:ecommerceapp/Screens/SignupScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -13,7 +16,7 @@ class MyApp extends StatelessWidget {
       initialRoute: LoginScreen.id,
       routes: {
         LoginScreen.id: (context) => LoginScreen(),
-        Signup_Screen.id: (context) => Signup_Screen()
+        SignupScreen.id: (context) => SignupScreen()
       },
       home: LoginScreen(),
     );

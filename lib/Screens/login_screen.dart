@@ -1,4 +1,4 @@
-import 'package:ecommerceapp/Screens/signup_screen.dart';
+import 'package:ecommerceapp/Screens/SignupScreen.dart';
 import 'package:ecommerceapp/constants.dart';
 import 'package:ecommerceapp/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +8,11 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
+    var customTextField = CustomTextField(
+      onClick: null,
+      hint: 'Enter your email',
+      icon: Icons.email,
+    );
     return Scaffold(
       backgroundColor: KMainColor,
       body: ListView(
@@ -34,16 +39,14 @@ class LoginScreen extends StatelessWidget {
           SizedBox(
             height: height * .1,
           ),
-          CustomTextField(
-            hint: 'Enter your email',
-            icon: Icons.email,
-          ),
+          customTextField,
           SizedBox(
             height: height * .02,
           ),
           CustomTextField(
             hint: 'Enter your password',
             icon: Icons.lock,
+            onClick: null,
           ),
           SizedBox(
             height: height * .05,
@@ -73,7 +76,7 @@ class LoginScreen extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, Signup_Screen.id);
+                  Navigator.pushNamed(context, SignupScreen.id);
                 },
                 child: Text(
                   'Signup',

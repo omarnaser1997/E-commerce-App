@@ -1,7 +1,8 @@
-import 'package:ecommerceapp/Screens/login_screen.dart';
 import 'package:ecommerceapp/Screens/SignupScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+
+import 'Screens/LoginScreen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

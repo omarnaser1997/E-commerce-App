@@ -4,12 +4,11 @@ import 'package:ecommerceapp/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
 
 import '../constants.dart';
-import 'LoginScreen.dart';
 
-class SignupScreen extends StatelessWidget {
-  final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
-  static String id = 'SignupScreen';
-  static String _email, _password;
+class LoginScreen extends StatelessWidget {
+  final GlobalKey<FormState> _globalKey2 = GlobalKey<FormState>();
+  static String id = 'LoginScreenTest';
+  static String email, password;
 
   final _auth = Auth();
   @override
@@ -19,7 +18,7 @@ class SignupScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: KMainColor,
       body: Form(
-        key: _globalKey,
+        key: _globalKey2,
         child: ListView(
           children: <Widget>[
             CustomIconField(
@@ -28,17 +27,12 @@ class SignupScreen extends StatelessWidget {
             SizedBox(
               height: height * .04,
             ),
-            CustomTextField(
-              onClick: (value) {},
-              icon: Icons.perm_identity,
-              hint: 'Enter your name',
-            ),
             SizedBox(
               height: height * .02,
             ),
             CustomTextField(
               onClick: (value) {
-                _email = value;
+                email = value;
               },
               hint: 'Enter your email',
               icon: Icons.email,
@@ -48,7 +42,7 @@ class SignupScreen extends StatelessWidget {
             ),
             CustomTextField(
               onClick: (value) {
-                _password = value;
+                password = value;
               },
               hint: 'Enter your password',
               icon: Icons.lock,
@@ -62,13 +56,11 @@ class SignupScreen extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20)),
                 onPressed: () async {
-                  if (_globalKey.currentState.validate()) {
+                  if (_globalKey2.currentState.validate()) {
                     //do some thing
-                    _globalKey.currentState.save();
-                    print(_email);
-                    print(_password);
-                    final authResult = await _auth.signUp(_email, _password);
-                    print(authResult.user.uid);
+                    _globalKey2.currentState.save();
+                    final result = await _auth.signIn(email, password);
+                    print(result.user.uid);
                   }
                 },
                 color: Colors.black,
@@ -85,15 +77,15 @@ class SignupScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  'Do have an account ?',
+                  'Don\'t have an account ?',
                   style: TextStyle(color: Colors.white, fontSize: 16),
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, LoginScreen.id);
+                    // Navigator.pushNamed(context, SignupScreen.id);
                   },
                   child: Text(
-                    ' Login',
+                    ' SignUp',
                     style: TextStyle(fontSize: 16),
                   ),
                 ),
